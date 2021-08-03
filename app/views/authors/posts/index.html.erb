@@ -3,7 +3,7 @@
   <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
 </h4>
 <% @posts.each do |post| %>
-  <%= link_to post, class: "text-decoration-none" do %>
+  <%= link_to edit_post_path(post), class: "text-decoration-none" do %>
     <div class="card mb-3">
       <div class="card-body">
         <div class="ard-title text-dark mb-1"><%= post.title %></div>

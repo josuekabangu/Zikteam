@@ -15,3 +15,5 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+const images = require.context('../images', true)

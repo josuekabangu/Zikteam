@@ -1,6 +1,5 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post
     before_action :set_post, only: %i[ show edit update destroy ]
 
     # GET /posts or /posts.json
@@ -23,11 +22,11 @@ module Authors
 
     # POST /posts or /posts.json
     def create
-      @post = Post.new(post_params)
+      @post = current_author.posts.build(post_params)
 
       respond_to do |format|
         if @post.save
-          format.html { redirect_to @post, notice: "Post was successfully created." }
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully created." }
           format.json { render :show, status: :created, location: @post }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +39,7 @@ module Authors
     def update
       respond_to do |format|
         if @post.update(post_params)
-          format.html { redirect_to @post, notice: "Post was successfully updated." }
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
           format.json { render :show, status: :ok, location: @post }
         else
           format.html { render :edit, status: :unprocessable_entity }

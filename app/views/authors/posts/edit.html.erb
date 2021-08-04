@@ -2,34 +2,56 @@
 	<div class="col-md-4">
 		<%= link_to 'Back', posts_path, class: "btn btn-secondary mb-3" %>
 		<div class="card">
+			<div class="card-header">
+        <h5 class='card-title mb-0'>Editing Post</h5>
+      </div>
 			<div class="card-body">
-				<h4 class="card-title">Editing Post</h4>
 				<%= render 'form', post: @post %>
+			</div>
+			<div class="card-footer d-grid gap-2">
+				<% if @post.published? %>
+			     <a href="#"
+			       class='btn btn-secondary btn-block'
+			       data-reflex='click->PublisherReflex#unpublish'
+			       data-post-id='<%= @post.id %>'>
+			       Unpublish
+			     </a>
+			  <% else %>
+			     <a href="#"
+			       class='btn btn-dark btn-block'
+			       data-reflex='click->PublisherReflex#publish'
+			       data-post-id='<%= @post.id %>'>
+			       Publish
+			     </a>
+			  <% end %>				
 			</div>
 		</div>
 	</div>
 	<div class="col-md-8">
 	  <div class="mb-3">
-		<%= form_with(model: [@post, @element], html: { class: 'float-start me-2' }) do |form| %>
-		  <%= form.hidden_field :element_type, value: 'paragraph' %>
-		  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-			<i class="bi bi-paragraph"></i>
-		  <% end %>
-		<% end %>
-		<%= form_with(model: [@post, @element], html: { class: 'float-start me-2' }) do |form| %>
-		  <%= form.hidden_field :element_type, value: 'image' %>
-		  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-			<i class="bi bi-image-fill"></i>
-		  <% end %>
-		<% end %>
-		<%= form_with(model: [@post, @element]) do |form| %>
-		  <%= form.hidden_field :element_type, value: 'element_video' %>
-		  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-			<i class="bi bi-file-earmark-play"></i>
-		  <% end %>
-		<% end %>
+			<%= form_with(model: [@post, @element], html: { class: 'float-start me-2' }) do |form| %>
+			  <%= form.hidden_field :element_type, value: 'paragraph' %>
+			  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+				<i class="bi bi-paragraph"></i>
+			  <% end %>
+			<% end %>
+			<%= form_with(model: [@post, @element], html: { class: 'float-start me-2' }) do |form| %>
+			  <%= form.hidden_field :element_type, value: 'image' %>
+			  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+				<i class="bi bi-image-fill"></i>
+			  <% end %>
+			<% end %>
+			<%= form_with(model: [@post, @element]) do |form| %>
+			  <%= form.hidden_field :element_type, value: 'element_video' %>
+			  <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+				<i class="bi bi-file-earmark-play"></i>
+			  <% end %>
+			<% end %>
 	  </div>
 		<div class="card">
+			<div class="card-header">
+				<b>Published</b>
+			</div>
 			<div class="card-body pt-3">
 				<% @post.elements.each do |element| %>
 					<% if element.paragraph? %>

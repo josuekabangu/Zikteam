@@ -60,3 +60,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
 gem 'devise', '~> 4.8'
 gem "stimulus_reflex", "~> 3.4"
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'

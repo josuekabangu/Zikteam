@@ -15,4 +15,5 @@ class Element < ApplicationRecord
   def element_video?
     element_type == "element_video"
   end
+
 end
